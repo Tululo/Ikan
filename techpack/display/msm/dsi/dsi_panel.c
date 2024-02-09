@@ -546,12 +546,12 @@ void set_lcd_reset_gpio_keep_high(bool en)
 	lcd_reset_keep_high = en;
 }
 EXPORT_SYMBOL(set_lcd_reset_gpio_keep_high);
-static bool fts_ts_varian = false;
-void set_fts_ts_varian(bool en)
+static bool fts_ts_variant = false;
+void set_fts_ts_variant(bool en)
 {
-	fts_ts_varian = en;
+	fts_ts_variant = en;
 }
-EXPORT_SYMBOL(set_fts_ts_varian);
+EXPORT_SYMBOL(set_fts_ts_variant);
 #endif
 
 static int dsi_panel_power_off(struct dsi_panel *panel)
@@ -619,7 +619,7 @@ static int dsi_panel_power_off(struct dsi_panel *panel)
 	}
 
 	//for dt2w purpose but not for fts
-	if(fts_ts_varian) { 
+	if(fts_ts_variant) { 
 		rc = dsi_panel_set_pinctrl_state(panel, false);
 		if (rc) {
 			 DSI_ERR("[%s] failed set pinctrl state, rc=%d\n", panel->name,
@@ -2272,7 +2272,7 @@ static int dsi_panel_parse_reset_sequence(struct dsi_panel *panel)
 	fts_reset_seq = utils->read_bool(utils->data,
 		"qcom,mdss-dsi-focaltech-reset-sequence");
 	
-	if (fts_ts_varian && !fts_reset_seq) 
+	if (fts_ts_variant && !fts_reset_seq) 
 		return 0;
 
 	arr = utils->get_property(utils->data,
