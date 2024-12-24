@@ -1820,7 +1820,7 @@ static int fts_ts_probe(struct spi_device *spi)
     }
 
     FTS_INFO("Touch Screen(SPI BUS) driver prboe successfully");
-    set_fts_ts_varian(true);
+    set_fts_ts_variant(true);
     return 0;
 }
 
